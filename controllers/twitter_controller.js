@@ -43,7 +43,6 @@ exports.getAccessTokenCallback = function(req,res,next) {
                    _oauth_token_secret = accessSecret;
                    _user_id = user.id;
                    _user_name = user.screen_name;
-                   console.log(_oauth_token,_oauth_token_secret, _user_id, _user_name )
                    res.sendFile(process.cwd()+'/close.html');
                 }
             });

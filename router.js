@@ -12,5 +12,5 @@ module.exports = function(app) {
     app.get('/generate-token',TwitterController.generateToken);
     app.get('/get-access-token-callback', TwitterController.getAccessTokenCallback);
     app.get('/get-oauth-token', TwitterController.getOAuthToken);
-    app.post('/test-authorization', passport.authenticate('twitter-token',{session:false}), TwitterController.testAuthorization);
+    app.get('/test-authorization', passport.authenticate('twitter-token',{session:false}), TwitterController.testAuthorization);
 };
