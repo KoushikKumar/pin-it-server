@@ -26,3 +26,10 @@ exports.fetchAllPins = function(req, res, next) {
         res.json(pins.reverse());
     });
 };
+
+exports.deletePinById = function(req, res, next) {
+    const imageId = req.params.imageId;
+    Pin.find({_id:imageId}).remove(function(){
+        res.json({"status":"success"});
+    });
+};
