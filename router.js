@@ -16,5 +16,6 @@ module.exports = function(app) {
     app.get('/test-authorization', passport.authenticate('twitter-token',{session:false}), TwitterController.testAuthorization);
     
     //pinit handlers
-    app.post('/add-pin', PinItController.addPin);
+    app.post('/add-pin', passport.authenticate('twitter-token',{session:false}), PinItController.addPin);
+    app.get('/fetch-all-pins', PinItController.fetchAllPins);
 };

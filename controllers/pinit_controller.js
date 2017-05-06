@@ -12,9 +12,17 @@ exports.addPin = function(req, res, next) {
     });
     pin.save(function(err){
         if(err) {
-            console.log(err);
             return next(err);
         }
         res.json(pin);
+    });
+};
+
+exports.fetchAllPins = function(req, res, next) {
+    Pin.find({}, function(err, pins) {
+        if(err) {
+            return next(err);
+        }
+        res.json(pins.reverse());
     });
 };
