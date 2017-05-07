@@ -33,3 +33,21 @@ exports.deletePinById = function(req, res, next) {
         res.json({"status":"success"});
     });
 };
+
+exports.savePin = function(req, res, next) {
+    const imageId = req.body.imageId;
+    const userName = req.body.userName;
+    Pin.findOne({_id:imageId}, function(err, pin){
+        if(err) {
+           next(err);
+        }
+        const pinnedBy = pin.pinnedBy;
+        pinnedBy = pinnedBy.push(userName);
+        Pin.findOneAndUpdate({_id:imageId}, {pinnedBy}, function(err, data) {
+            if(err) {
+              next(err);
+            } 
+            res.json({status:"Updated"});
+        });
+    });
+};
