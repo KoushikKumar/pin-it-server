@@ -20,4 +20,5 @@ module.exports = function(app) {
     app.get('/fetch-all-pins', PinItController.fetchAllPins);
     app.delete('/delete/pin/:imageId', passport.authenticate('twitter-token',{session:false}), PinItController.deletePinById);
     app.post('/save/pin', passport.authenticate('twitter-token',{session:false}), PinItController.savePin);
+    app.post('/unsave/pin', passport.authenticate('twitter-token',{session:false}), PinItController.unsavePin);
 };

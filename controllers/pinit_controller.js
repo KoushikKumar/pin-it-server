@@ -51,3 +51,23 @@ exports.savePin = function(req, res, next) {
         });
     });
 };
+
+exports.unsavePin = function(req, res, next) {
+    const imageId = req.body.imageId;
+    const userName = req.body.userName;
+    Pin.findOne({_id:imageId}, function(err, pin){
+        if(err) {
+           next(err);
+        }
+        var pinnedBy = pin.pinnedBy;
+        pinnedBy = pinnedBy.filter((user) => {
+            return user!==userName;
+        });
+        Pin.findOneAndUpdate({_id:imageId}, {pinnedBy}, function(err, data) {
+            if(err) {
+              next(err);
+            } 
+            res.json({status:"Updated"});
+        });
+    });
+};
